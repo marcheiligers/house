@@ -8,6 +8,7 @@ class Camera
     @object = Mittsu::PerspectiveCamera.new(75.0, ASPECT, 0.1, 1000.0)
     @object.position.z = 3.0
     @object.position.y = 2.0
+    @object.rotation.order = 'YXZ'
   end
 
   def update_aspect(width, height)
