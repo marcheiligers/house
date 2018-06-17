@@ -1,13 +1,14 @@
+require_relative 'repeating_texture_phong_material'
+
 class Wall
   attr_reader :object
+  include RepeatingTexturePhongMaterial
 
   def initialize
-    geometry = Mittsu::BoxGeometry.new(20.0, 10.0, 0.3)
-    material = Mittsu::MeshPhongMaterial.new(
-      map: Mittsu::ImageUtils.load_texture(File.join(File.dirname(__FILE__), "../textures/wall.png")),
-      normal: Mittsu::ImageUtils.load_texture(File.join(File.dirname(__FILE__), "../textures/wall_normal.png"))
+    @object = Mittsu::Mesh.new(
+      Mittsu::BoxGeometry.new(20.0, 10.0, 0.3),
+      material('wall', 'wall_normal')
     )
-    @object = Mittsu::Mesh.new(geometry, material)
     @object.position.y = 5
   end
 end
